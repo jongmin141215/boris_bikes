@@ -1,7 +1,7 @@
 class DockingStation
   def release_bike
     # Bike.new
-    #fail 'No bikes available'
+    fail 'No bikes available' if @bike == nil
     @bike
   end
 
