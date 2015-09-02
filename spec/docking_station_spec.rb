@@ -20,9 +20,13 @@ describe DockingStation do
   end
 
   describe '#dock' do
-      dock_1 = DockingStation.new
-      dock_1.dock Bike.new
-      it do expect {dock_1.dock Bike.new}.to raise_error 'Docking station full' end
+      # dock_1 = DockingStation.new
+      # 20.times {dock_1.dock Bike.new}
+      # it do expect {dock_1.dock Bike.new}.to raise_error 'Docking station full' end
+      it do
+        20.times {subject.dock(Bike.new)}
+        expect{subject.dock(Bike.new)}.to raise_error 'Docking station full'
+      end
   end
 
 
