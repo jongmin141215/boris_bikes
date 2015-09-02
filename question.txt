@@ -1,0 +1,1 @@
+Why does rspec require does not need full file path?
