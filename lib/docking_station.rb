@@ -1,14 +1,16 @@
 class DockingStation
+  def initialize
+    @bikes = []
+  end
+
   def release_bike
     # Bike.new
-    fail 'No bikes available' if @bike == nil
-    @bike
+    fail 'No bikes available' if @bikes == [] 
+    @bikes.pop
   end
 
   def dock(bike)
-    @counter ||= 0
-  	fail 'Docking station full' if @counter == 20
-  	@bike = bike
-    @counter += 1
+  	fail 'Docking station full' if @bikes.count >= 20
+  	@bikes << bike
   end
 end
