@@ -1,3 +1,5 @@
+require_relative 'bike'
+
 class DockingStation
   attr_accessor :capacity
 
@@ -8,14 +10,15 @@ class DockingStation
   end
 
   def release_bike
-    # Bike.new
-    fail 'No bikes available' if empty?
-    @bikes.pop
+    working_bikes = bikes.select { |bike| bike.working? }
+    fail 'No bikes available' if working_bikes.empty?
+    my_bike = working_bikes.pop
+    bikes.delete(my_bike)
   end
 
   def dock(bike)
   	fail 'Docking station full' if full?
-  	@bikes << bike
+  	bikes << bike
   end
 
   private
