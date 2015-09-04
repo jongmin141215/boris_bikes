@@ -2,13 +2,14 @@ require_relative 'bike'
 require_relative 'van'
 
 class DockingStation
-  attr_accessor :capacity
+  include BikeContainer
 
-
-  def initialize(capacity = 20)
-    @bikes = []
-    @capacity = capacity
-  end
+  # attr_accessor :capacity
+  #
+  # def initialize(capacity = 20)
+  #   @bikes = []
+  #   @capacity = capacity
+  # end
 
   def release_bike
     working_bikes = bikes.select { |bike| bike.working? }
@@ -19,8 +20,10 @@ class DockingStation
 
   def dock(bike)
   	fail 'Docking station full' if full?
-  	bikes << bike
+  	# bikes << bike
+    collect bike
   end
+
 
   private
 

@@ -1,6 +1,8 @@
 require 'bike_container'
+
 shared_examples_for BikeContainer do
   let(:bike) {double :bike}
+
   it 'has a default capacity when initialized' do
     capacity = 20
     expect(subject.capacity).to eq capacity
@@ -16,6 +18,12 @@ shared_examples_for BikeContainer do
   end
 
   it 'can release bike' do
-    # expect(subject.
+    subject.collect bike
+    expect(subject.remove_bike).to eq bike
   end
+
+  it "can't release bike if empty" do
+    expect{subject.remove_bike}.to raise_error ("#{described_class.name} has no bikes")
+  end
+
 end

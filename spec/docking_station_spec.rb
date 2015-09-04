@@ -1,5 +1,6 @@
 require 'docking_station'
 require 'bike'
+require 'support/shared_examples_for_bike_container'
 
 describe DockingStation do
   # it 'responds to the release_bike method' do
@@ -14,6 +15,7 @@ describe DockingStation do
   end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
+
   it 'raises an error when there are no bikes available' do
     expect{subject.release_bike}.to raise_error 'No bikes available'
   end
@@ -51,5 +53,5 @@ describe DockingStation do
   #   expect(bike).to be_working
   # end
 
-
+  it_behaves_like BikeContainer
 end
