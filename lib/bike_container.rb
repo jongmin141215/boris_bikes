@@ -1,20 +1,31 @@
 module BikeContainer
+  DEFAULT_CAPACITY = 20
+
   attr_accessor :capacity
 
-  def initialize(capacity = 20)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @bikes = []
   end
 
-  def collect(bike)
-    fail "#{self.class.name} full" if @bikes.count >= capacity
-    @bikes << bike
+  def add_bike(bike)
+    fail "#{self.class} full" if full?
+    bikes << bike
   end
 
-  def remove_bike
-    fail "#{self.class.name} has no bikes" if @bikes.empty?
-    bike = @bikes.pop
-    bike
+  def remove_bike(bike)
+    fail "#{self.class} empty" if empty?
+    bikes.delete(bike)
   end
 
+  def empty?
+    bikes.length == 0
+  end
+
+  def full?
+    bikes.length >= capacity
+  end
+  private
+
+  attr_reader :bikes
 end

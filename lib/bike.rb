@@ -15,5 +15,4 @@ class Bike
 	def broken?
 		true if !@working
 	end
-
 end
