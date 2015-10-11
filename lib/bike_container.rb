@@ -25,7 +25,7 @@ module BikeContainer
   def full?
     bikes.length >= capacity
   end
-  private
+  # private
 
   attr_reader :bikes
 end

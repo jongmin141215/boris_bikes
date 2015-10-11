@@ -1,16 +1,10 @@
 
 describe Van do
-  let(:bike) { double :bike, broken?: true }
+  let(:bike) { double :bike }
   # let(:docking_station) { double :docking_station}
   describe '#load' do
-    it 'loads broken bikes' do
-      subject.load bike
-      expect(bike).to be_broken
-    end
-
-    it 'does not load working bikes' do
-      bike = double :bike, broken?: false
-      expect(subject.load bike).to be_empty
+    it 'loads bikes' do
+      expect(subject.load bike).to eq([bike])
     end
 
     it 'cannot load more than 20 bikes' do
@@ -18,7 +12,22 @@ describe Van do
       expect { subject.load bike }.to raise_error ('Van full')
     end
   end
-  
+
+  describe '#unload' do
+    it 'unloads bikes' do
+      subject.load(bike)
+      expect(subject.unload_bikes).to eq([bike])
+    end
+
+    it 'unloads multiple bikes' do
+      3.times { subject.load(bike) }
+      expect(subject.unload_bikes).to eq([bike, bike, bike])
+    end
+
+    it 'raises an error when there is no bike to unload' do
+      expect { subject.unload_bikes }.to raise_error ('Van empty')
+    end
+  end
 
 
 
