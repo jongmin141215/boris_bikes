@@ -16,6 +16,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require './lib/docking_station'
+require './lib/bike_container'
+require './lib/van'
+require './lib/bike'
+require_relative 'support/shared_examples_for_bike_container'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

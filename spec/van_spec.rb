@@ -1,13 +1,27 @@
-require 'van'
 
 describe Van do
-  # it { is_expected.to respond_to(:take_broken_bikes) }
-  #
-  # it 'takes broken bikes from station' do
-  #   bike = Bike.new
-  #   bike.report_broken
-  #   station = DockingStation.new
-  #   station.dock(bike)
-  #   expect(subject.take_broken_bikes).to be bike
-  # end
+  let(:bike) { double :bike, broken?: true }
+  # let(:docking_station) { double :docking_station}
+  describe '#load' do
+    it 'loads broken bikes' do
+      subject.load bike
+      expect(bike).to be_broken
+    end
+
+    it 'does not load working bikes' do
+      bike = double :bike, broken?: false
+      expect(subject.load bike).to be_empty
+    end
+
+    it 'cannot load more than 20 bikes' do
+      subject.capacity.times { subject.load bike }
+      expect { subject.load bike }.to raise_error ('Van full')
+    end
+  end
+  
+
+
+
+
+  it_behaves_like BikeContainer
 end

@@ -1,8 +1,3 @@
-require 'docking_station'
-require 'bike_container'
-# require 'bike'
-require 'support/shared_examples_for_bike_container'
-
 describe DockingStation do
 
   let(:bike) { double :bike, working?: true }

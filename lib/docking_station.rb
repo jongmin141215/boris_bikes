@@ -1,9 +1,14 @@
+require_relative 'bike_container'
 class DockingStation
   include BikeContainer
 
   def release_bike(bike)
     fail 'DockingStation empty' if working_bikes.empty?
-    remove_bike(bike)
+    if working_bikes.include? bike
+      bikes.delete(bike)
+    else
+      return 'No working bikes available'
+    end
   end
 
   def dock(bike)
