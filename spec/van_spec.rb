@@ -1,7 +1,7 @@
 
 describe Van do
   let(:bike) { double :bike }
-  # let(:docking_station) { double :docking_station}
+
   describe '#load' do
     it 'loads bikes' do
       expect(subject.load bike).to eq([bike])
@@ -28,9 +28,6 @@ describe Van do
       expect { subject.unload_bikes }.to raise_error ('Van empty')
     end
   end
-
-
-
 
   it_behaves_like BikeContainer
 end

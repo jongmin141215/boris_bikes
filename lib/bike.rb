@@ -1,4 +1,5 @@
 class Bike
+	attr_writer :working
 
 	def initialize
 		@working = true
@@ -14,5 +15,9 @@ class Bike
 
 	def broken?
 		true if !@working
+	end
+
+	def fix
+		self.working = true
 	end
 end
