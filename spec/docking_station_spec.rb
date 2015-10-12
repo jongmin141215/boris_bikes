@@ -1,6 +1,6 @@
 describe DockingStation do
 
-  let(:bike) { double :bike, working?: true }
+  let(:bike) { double :bike, working?: true, broken?: false }
 
   describe '#release_bike(bike)' do
     it { is_expected.to respond_to(:release_bike) }
@@ -15,7 +15,7 @@ describe DockingStation do
     end
 
     it 'raises an error when there are no working bikes' do
-      bike = double :bike, working?: false
+      bike = double :bike, broken?: true, working?: false 
       subject.dock bike
       expect{ subject.release_bike bike }.to raise_error 'DockingStation empty'
     end
@@ -30,6 +30,9 @@ describe DockingStation do
       expect { subject.dock bike }.to raise_error 'DockingStation full'
     end
 
+    it 'does not accept things other than bikes' do
+      expect { subject.dock 'hi' }.to raise_error('Can only accept bikes')
+    end
   end
 
   it 'has a default capacity' do

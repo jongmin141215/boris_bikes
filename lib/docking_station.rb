@@ -12,7 +12,11 @@ class DockingStation
   end
 
   def dock(bike)
-    add_bike bike
+    if bike.respond_to?(:broken?)
+      add_bike bike
+    else
+      raise 'Can only accept bikes'
+    end
   end
 
   private
